@@ -1,0 +1,835 @@
+/* ページ内スクロールを行う */
+html {scroll-behavior: smooth;}
+
+/* フォント */
+/* 上から優先されるフォント、読み込みがされないときの代用がいくつかあり */
+body {
+    font-family: 'Roboto', 'Noto Sans JP','ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', 'メイリオ', 'Meiryo', '游ゴシック', 'Yu Gothic', 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif,'Noto Color Emoji',;
+    background-color: #000;
+    color: #fff;
+}
+
+/* h1のフォントサイズをremにします */
+/* remを使うのはスマホに対応するため */
+h1 {
+    color:#fff !important;
+    font-size: 5.0em;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: 0.5rem 0.5rem 0.5rem #696969;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    padding: 2em 2em;
+    background-image: url('img/背景画像.jpg');
+}
+
+.main-view{
+    text-decoration: none;
+}
+
+.main-view:visited{
+    text-decoration: none;
+}
+
+/* h1をまとめて文字に色の動きをつける */
+.c01{
+    margin-top: 5.5em;
+    position: relative; color: transparent;
+    &::before{
+        content: ""; position: absolute; z-index: 1; top: 0%; right: 100%; bottom: 0%; left: 0%;
+        background : #0e0950;
+    }
+    &.active{
+        animation-name: kf_c01a;
+        animation-duration: 0s;
+        animation-delay: 0.5s;
+        animation-fill-mode: forwards;
+        &::before{
+        animation-name: kf_c01b;
+        animation-duration: 1s;
+        animation-fill-mode: forwards;
+        }
+    }
+}
+@keyframes kf_c01a {
+    100%{
+    color: inherit;
+    }
+}
+@keyframes kf_c01b {
+    50%{
+    left: 0%; right: 0%;
+    }
+100%{
+    left: 100%; right: 0%;
+    }
+}
+
+/* ----------------------------------------------------------------------- */
+/* pの行間を1.5にします */
+p {
+    line-height: 1.5;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+}
+
+/* 画像に背景をつける */
+.image{
+    box-shadow: 0.5rem 0.5rem 0.5rem #696969;
+    margin-bottom: 0.7rem;
+}
+
+/* 画像を中央に配置するレイアウト */
+.photo-center{
+    text-align: center;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+
+.center{
+    margin: 0 auto;
+}
+
+/* 上に戻るボタン */
+.top{
+    text-align: center;
+    position: fixed;
+    right: 0;
+    bottom: 1rem;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 1.5rem;
+    color: #fff;
+    background-color: #00b7ff;
+    z-index: 999;/* 表示順を上にするためにz-indexを999とする */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+.top:hover{
+    cursor: pointer;
+    background-color: #62d3ff;
+}
+
+/* ナビゲーションバー */
+.header-nav{
+    text-align: center;
+    position: absolute;
+    top:0;
+    right: 0;
+    left: 0;
+    z-index: 998;/* 表示順を上にするためにz-indexを999とする */
+    background-color: #1b1b1b;
+}
+
+.header-nav ul{
+    margin: 0;
+    padding: 0;
+}
+
+.header-nav ul li{
+    list-style: none;
+    display:inline-block;
+}
+
+.header-nav ul li a{
+    text-decoration: none;
+    font-size: 1.5em;
+    color:#ffffff;
+    width: 7em;
+    display: block;
+    padding: 2rem 3rem;
+    font-weight: 900;
+}
+
+.header-nav ul li a:visited{
+    color:#ffffff
+}
+
+.header-nav ul li:hover{
+    cursor: pointer;
+    border-bottom: 2px solid #ec2f2f;
+}
+
+/* 記事 */
+/* 色と横幅の指定、記事を中央にするために感覚を中央にする */
+article{
+    background-color: #252525;
+    color: #fff;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 3rem;
+}
+
+
+
+/* テキスト中央揃え */
+.text-center {
+    text-align: center;
+}
+
+/* メインコンテンツ */
+.main-content{
+    background-color: #fff;
+    width: 1200px;
+    margin:0 auto;
+}
+
+
+
+
+/* ----------------------------------------------------------------------- */
+/* about me */
+/* h2のマージンを0をする */
+h2 {
+    font-size: 2.0em;
+    margin-top: 0;
+    background-color: #13b4ff;
+    padding: 1.5em 0em;
+    width:100%
+}
+
+.my-face{
+    width:30rem;
+}
+
+/* ネームエリアの枠を */
+.name-area{
+    padding-bottom: 0.7em;
+}
+
+/* 文字の太さ */
+.name {
+    font-weight: 800;
+}
+
+/* アイコンの大きさを決める */
+.text-big{
+    font-size: 5.0em;
+}
+
+/* リンクの文字の色は白にする */
+a:link{
+    color:#ffffff
+}
+
+/* リンク箇所の文字は黒にする */
+.photo-link{
+    color:#ffffff
+}
+
+.photo-link:visited{
+    color:#ffffff
+}
+
+/* リンクにマウスがあったときに青にする */
+.photo-link:hover{
+    color:#00b7ff
+}
+
+/* ----------------------------------------------------------------------- */
+/* skills */
+/* Flex要素 */
+.skill-list {
+    display: flex;
+    width: 100%;
+    margin-bottom: 3rem;
+    }
+
+.skill-list-inner{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width:  50%;
+}
+
+/* 文字の大きさ */
+.skill-name {
+    font-size: 1.2em;
+    font-weight: 800;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+.w-icon{
+    width:  100%;
+    margin-bottom: 1.5rem;
+}
+
+/* 文字の大きさを決める */
+.text-skill{
+    font-size: 2.0em;
+    margin-bottom: 1.5em;
+}
+
+/* Flex要素 */
+.star-desc {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 3rem;
+    gap: 0.5em 1em;
+    flex-wrap: wrap;
+    margin-bottom: 1.2em;
+    }
+
+
+
+/* skills */
+/* Flex要素 */
+.skill-soft {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 3rem;
+    gap: 2.0em;
+    }
+
+.skill-soft-inner{
+    display: flex;
+    font-size: 1.5em;
+    flex-direction: column;
+    align-items: flex-start;
+    text-wrap: nowrap;
+}
+
+/* ----------------------------------------------------------------------- */
+/* works */
+/* 画像 */
+h3 {
+    font-size: 1.5em;
+    margin-top: 0;
+    width:100%
+}
+
+.game{
+    width: 50rem;
+}
+
+/* スライドショー */
+.slide-main{
+    position:relative;/* 相対位置の指定、Topは下に、Leftで右にずらすことができる */
+    width: 100%;
+    aspect-ratio: 5 / 3;
+    padding: 0;
+    margin-bottom: 1.5rem;
+}
+
+.slide-main li{
+    list-style: none;
+    width: 100%;
+    height:100%;
+}
+
+.slide-main li img{
+    position: absolute;/* 絶対指定 */
+    left:0;
+    top:0;
+    width:100%;
+    height: 100%;
+    object-fit: cover;/*  */
+}
+
+/* 013 */
+/* hoverすると左から右にカーテン */
+.button013 a {
+    background: #eee;
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 240px;
+    padding: 10px 25px;
+    color: #313131;
+    transition: 0.3s ease-in-out;
+    font-weight: 500;
+    z-index:0;
+    border-left: solid 5px #6bb6ff;
+}
+
+
+/* 能代ポータル */
+.noshiro-portal{
+    width: 60rem;
+}
+
+/* ボタンに触れる前はwidthを0にして色を見せない */
+/* transitionを使って色を移動させる */
+/* leftに指定してtransitionを左から右へ移動させる */
+.button013{
+    margin-top: 3.0rem;
+}
+.button013 a:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 0;
+    display: block;
+    background: #6bb6ff;
+    transition: .3s;
+    left:0;
+}
+.button013 a:hover {
+    color: #ffffff;
+}
+.button013 a:hover:before {
+    width: 100%;
+    z-index: -1;
+}
+
+
+/* ----------------------------------------------------------------------- */
+/* Hobby */
+
+/* 文字の太さ */
+.tf-title {
+    font-size: 1.2em;
+    font-weight: 1000;
+    margin-top: 1.2em;
+    margin-bottom: 1.2em;
+}
+
+.track{
+    width: 25rem;
+}
+
+.tf-con {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 3rem;
+    gap: 2.0em;
+    }
+
+.tf-con-inner{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.tf-table{
+    margin-top: 7.0em;
+    width: 100%;
+}
+
+table th {/*table内のthに対して*/
+    padding: 10px;/*上下左右10pxずつ*/
+    background-color: #4e636d;
+}
+
+table td {/*table内のtdに対して*/
+    padding: 3px 10px;/*上下3pxで左右10px*/
+}
+
+/* リンク箇所の文字は黒にする */
+.tf-link{
+    color:#ffffff
+}
+
+.tf-link:visited{
+    color:#ffffff
+}
+
+/* リンクにマウスがあったときに青にする */
+.tf-link:hover{
+    color:#00b7ff
+}
+
+/* フッター */
+footer{
+    background-color: #181818;
+    padding: 1em;
+    margin-top: 15px;
+}
+
+.footer-site-name{
+    margin: 0;
+}
+
+.footer-container{
+    display: flex;
+    margin: 0 300px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.icon-area{
+    display: flex;
+    align-items: center;
+    line-height: 0;
+}
+
+.icon-area a{
+    text-decoration: none;
+}
+
+.icon-list{
+    margin-right: 16px;
+    list-style: none;
+}
+
+/* ----------------------------------------------------------------------- */
+/* works02 */
+/* ボックス全体 */
+.accordion-box{
+    margin: 10px;
+    padding: 100px 100px;
+}
+/* ラベル全体 */
+.accordion-box label{
+    display: block;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    padding: 20px;
+    background-color: #6e6e6e;
+}
+/* チェックボックスを非表示にする */
+.accordion-box input{
+    display:none;
+}
+/* 中身を非表示にしておく */
+.accordion-box>div{
+    height: 0;
+    overflow-y: hidden;
+    transition: 0.5s;
+    opacity: 0;
+}
+/* クリックして中身を表示 */
+.accordion-box input:checked + label + div{
+    height:auto;
+    opacity: 1;
+    background-color: #000000;
+}
+/* アイコン */
+.accordion-box label:before{
+    content: "+";
+    padding-right: 8px;
+}
+/* クリック時にアイコンを-にする */
+.accordion-box input:checked + label:before{
+    content:"-";
+}
+
+.twitter{
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+}
+
+.twitter>div{
+    margin: 0 auto;
+}
+
+.youtube{
+    width:100%;
+    aspect-ratio: 16 / 9;/* YouTubeの画面比率が必ずテレビサイズになる */
+    margin-bottom: 1.5rem;
+}
+
+.youtube iframe{
+    width: 100%;
+    height: 100%;
+}
+
+/* 画像を中央に配置するレイアウト */
+.photo-h2{
+    text-align: center;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+
+.ephoto{
+    width: 100%;
+}
+
+/* ----------------------------------------------------------------------- */
+/* 1199.99px以下のとき(タブレット対応) */
+    @media screen and (max-width:1199.99px){
+        .header-nav ul li a{
+            font-size: 1.0rem;
+            width: 6em;
+            padding: 2rem 1rem;
+            font-weight: 900;
+        }
+        
+        
+        h1{
+            font-size: 3.0em;
+        }
+        .c01{
+            margin-top: 5.0rem;
+        }
+        .main-content{
+            width: 100%;
+        }
+        article{
+            padding: 2.0rem;
+        }
+        .my-face{
+            width:20rem;
+        }
+        .skill-list{
+            flex-wrap: wrap;
+        }
+        /* 文字の大きさを決める */
+        .text-skill{
+            font-size: 1.5em;
+        }
+        h2 {
+            font-size: 2.0em;
+            margin-top: 0;
+            background-color: #13b4ff;
+            padding: 1.3em 0em;
+            width:100%
+        }
+        /* 能代ポータル */
+        .noshiro-portal{
+            width:100%;
+        }
+        /* 陸上競技 */
+        .tf-table{
+            margin-top: 2.0em;
+        }
+        .tf-con {
+            flex-direction: column-reverse;
+            }
+        .footer-container{
+            display: flex;
+            margin: 0;
+            justify-content: space-between;
+            align-items: center;
+            flex-direction: column;
+        }
+    /* ----------------------------------------------------------------------- */
+/* news02 */
+/* ボックス全体 */
+.accordion-box{
+    padding: 50px 0px;
+}
+
+    }
+/* ----------------------------------------------------------------------- */
+/* 600px以下のとき(スマホ対応) */
+    @media screen and (max-width:600px){
+        /* ナビゲーションバーを隠す */
+    /* ナビゲーションバー */
+    .header-nav{
+        text-align: initial;
+        position: initial;
+        top:0;
+        right: 0;
+        left: 0;
+        z-index: 998;/* 表示順を上にするためにz-indexを999とする */
+        background-color: #1b1b1b;
+    }
+
+    .header-nav ul{
+        margin: 0;
+        padding: 0;
+    }
+
+    .header-nav ul li{
+        list-style: none;
+        display:inline-block;
+    }
+
+    .header-nav ul li a{
+        text-decoration: none;
+        font-size: 1.5em;
+        color:#ffffff;
+        width: initial;
+        display: block;
+        padding: 2rem 3rem;
+        font-weight: 900;
+    }
+
+    .header-nav ul li a:visited{
+        color:#ffffff
+    }
+
+    .header-nav ul li:hover{
+        cursor: pointer;
+        border-bottom:initial;
+    }
+
+        /* ハンバーガーボタン */
+        .hamburger{
+            display: block;
+            position: fixed;
+            z-index: 3;
+            right:13px;
+            top:12px;
+            width:42px;
+            height: 42px;
+            cursor: pointer;
+            text-align: center;
+            -webkit-transition: 0.5s all;
+            -moz-transition   : 0.5s all;
+            transition        : 0.5s all;
+        }
+        .hamburger span{
+            display: block;
+            position: absolute;
+            width: 30px;
+            height: 2px;
+            left:6px;
+            background: #555;
+        }
+        .hamburger span:nth-child(1) {
+            top: 10px;
+        }
+        .hamburger span:nth-child(2) {
+            top: 20px;
+        }
+        .hamburger span:nth-child(3) {
+            top: 30px;
+        }
+        /* ナビ開いてる時のボタン */
+        .hamburger.active{
+            -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+        .hamburger.active span:nth-child(1) {
+            top : 16px;
+            left: 6px;
+            -webkit-transform: rotate(-45deg);
+            -moz-transform   : rotate(-45deg);
+            transform        : rotate(-45deg);
+        }
+        .hamburger.active span:nth-child(2) {
+            top: 16px;
+            -webkit-transform: rotate(45deg);
+            -moz-transform   : rotate(45deg);
+            transform        : rotate(45deg);
+        }
+        .hamburger.active span:nth-child(3) {
+            opacity: 0;
+        }
+        /* ハンバーガーメニュー */
+        nav.header-nav{
+            position: fixed;
+            z-index: 2;
+            top: 0;
+            left: 0;
+            color: #000;
+            background: #fff;
+            text-align: center;
+            transform: translateX(100%);
+            transition: all 0.6s;
+            width: 100%;
+        }
+        nav.header-nav ul{
+            background-color: #ccc;
+            margin: 0 auto;
+            padding: 0;
+            width: 100%;
+        }
+        nav.header-nav ul li{
+            list-style-type: none;
+            padding: 0;
+            width: 100%;
+            border-bottom: 1px solid #fff;
+        }
+        nav.header-nav ul li:last-child{
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        nav.header-nav ul li:hover{
+            background: #ddd;
+        }
+        nav.header-nav ul li a{
+            display: block;
+            color: #000;
+            padding: 1em 0;
+            text-decoration: none;
+        }
+        /* このクラスを、jQueryで付与・削除する */
+        nav.header-nav.active {
+            transform: translateX(0%);
+        }
+        /* h1をスマホ用に変換する */
+        h1{
+            font-size: 1.5em
+        }
+        .c01{
+            margin-top: 0;
+        }
+        .main-content{
+            width: 100%;
+        }
+        article{
+            padding: 1.5rem;
+        }
+        .my-face{
+            width:10rem;
+        }
+        .skill-list {
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5em;
+        }
+        .skill-list-inner{
+            width: 100%;
+        }
+        /* 文字の大きさを決める */
+        .text-skill{
+            font-size: 1.0em;
+        }
+        h2 {
+            font-size: 1.8em;
+            margin-top: 0;
+            background-color: #13b4ff;
+            padding: 1.0em 0em;
+            width:100%
+        }
+        /* skills */
+        /* Flex要素 */
+        .skill-soft {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 3rem;
+            }
+        .skill-soft-inner{
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            font-size: 0.8em;
+        }
+        h3{
+            font-size: 1.2em;
+        }
+            /* 能代ポータル */
+            .noshiro-portal{
+                width: 100%;
+            }
+        
+        /* 陸上競技 */
+        .track{
+            width: 100%;
+        }
+        
+        .tf-table{
+            margin-top: 2.0em;
+            width: 100%;
+            table-layout: fixed;/*追加する*/
+        }
+        .tf-con {
+            flex-direction: column-reverse;
+            }
+        .footer-container{
+            display: flex;
+            margin: 0;
+            justify-content: space-between;
+            align-items: center;
+            flex-direction: column;
+        }
+    }
+
+
