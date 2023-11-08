@@ -550,6 +550,14 @@ footer{
     width: 100%;
 }
 
+/* サブコンテンツ */
+.sub-content{
+    background-color: #fff;
+    width:100%;
+    margin:0 auto;
+}
+
+
 /* ----------------------------------------------------------------------- */
 /* 1199.99px以下のとき(タブレット対応) */
     @media screen and (max-width:1199.99px){
